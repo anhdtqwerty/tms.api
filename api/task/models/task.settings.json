@@ -1,0 +1,63 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tasks",
+  "info": {
+    "name": "task",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "string"
+    },
+    "config": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "data": {
+      "type": "json"
+    },
+    "executeUnit": {
+      "model": "unit"
+    },
+    "suportUnit": {
+      "model": "unit"
+    },
+    "supervisorUnit": {
+      "model": "unit"
+    },
+    "executeDepartment": {
+      "model": "department"
+    },
+    "suportDepartment": {
+      "model": "department"
+    },
+    "supervisorDepartment": {
+      "model": "department"
+    }
+  }
+}

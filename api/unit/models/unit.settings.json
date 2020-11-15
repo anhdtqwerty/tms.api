@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "units",
+  "info": {
+    "name": "unit",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "department": {
+      "model": "department",
+      "via": "units"
+    },
+    "comrades": {
+      "via": "unit",
+      "collection": "comrade"
+    },
+    "description": {
+      "type": "string"
+    },
+    "config": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "data": {
+      "type": "json"
+    }
+  }
+}

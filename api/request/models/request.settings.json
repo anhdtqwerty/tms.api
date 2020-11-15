@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "requests",
+  "info": {
+    "name": "request",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "config": {
+      "type": "json"
+    },
+    "data": {
+      "type": "json"
+    },
+    "files": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "requestor": {
+      "model": "comrade"
+    },
+    "approver": {
+      "model": "comrade"
+    }
+  }
+}

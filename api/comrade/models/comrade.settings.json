@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "comrades",
+  "info": {
+    "name": "Comrade",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "department": {
+      "model": "department",
+      "via": "comrades"
+    },
+    "unit": {
+      "model": "unit",
+      "via": "comrades"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "config": {
+      "type": "json"
+    },
+    "position": {
+      "model": "position"
+    },
+    "executeComrade": {
+      "model": "comrade"
+    },
+    "suportComrade": {
+      "model": "comrade"
+    },
+    "supervisorComrade": {
+      "model": "comrade"
+    },
+    "files": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "data": {
+      "type": "json"
+    }
+  }
+}
