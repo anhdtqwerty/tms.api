@@ -31,8 +31,11 @@
       "type": "json"
     },
     "departments": {
-      "via": "unit",
-      "collection": "department"
+      "collection": "department",
+      "via": "unit"
+    },
+    "type": {
+      "type": "string"
     }
   }
 }

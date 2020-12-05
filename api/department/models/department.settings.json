@@ -31,8 +31,8 @@
       "type": "json"
     },
     "unit": {
-      "model": "unit",
-      "via": "departments"
+      "via": "departments",
+      "model": "unit"
     }
   }
 }
