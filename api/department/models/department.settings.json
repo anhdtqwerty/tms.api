@@ -20,19 +20,19 @@
     "code": {
       "type": "string"
     },
-    "units": {
-      "via": "department",
-      "collection": "unit"
-    },
     "comrades": {
-      "via": "department",
-      "collection": "comrade"
+      "collection": "comrade",
+      "via": "department"
     },
     "metadata": {
       "type": "json"
     },
     "config": {
       "type": "json"
+    },
+    "unit": {
+      "model": "unit",
+      "via": "departments"
     }
   }
 }

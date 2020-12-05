@@ -14,13 +14,9 @@
     "title": {
       "type": "string"
     },
-    "department": {
-      "model": "department",
-      "via": "units"
-    },
     "comrades": {
-      "via": "unit",
-      "collection": "comrade"
+      "collection": "comrade",
+      "via": "unit"
     },
     "description": {
       "type": "string"
@@ -33,6 +29,10 @@
     },
     "data": {
       "type": "json"
+    },
+    "departments": {
+      "via": "unit",
+      "collection": "department"
     }
   }
 }

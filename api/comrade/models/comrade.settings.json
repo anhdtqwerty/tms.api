@@ -27,12 +27,12 @@
       "type": "email"
     },
     "department": {
-      "model": "department",
-      "via": "comrades"
+      "via": "comrades",
+      "model": "department"
     },
     "unit": {
-      "model": "unit",
-      "via": "comrades"
+      "via": "comrades",
+      "model": "unit"
     },
     "metadata": {
       "type": "json"
