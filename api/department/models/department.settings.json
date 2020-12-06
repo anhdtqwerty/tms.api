@@ -11,9 +11,6 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "tile": {
-      "type": "string"
-    },
     "description": {
       "type": "string"
     },
@@ -39,6 +36,9 @@
     },
     "email": {
       "type": "email"
+    },
+    "title": {
+      "type": "string"
     }
   }
 }
