@@ -31,11 +31,20 @@
       "type": "json"
     },
     "departments": {
-      "collection": "department",
-      "via": "unit"
+      "via": "unit",
+      "collection": "department"
     },
     "type": {
       "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
     }
   }
 }

@@ -31,8 +31,14 @@
       "type": "json"
     },
     "unit": {
-      "via": "departments",
-      "model": "unit"
+      "model": "unit",
+      "via": "departments"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
     }
   }
 }
