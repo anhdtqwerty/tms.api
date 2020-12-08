@@ -15,8 +15,8 @@
       "type": "string"
     },
     "comrades": {
-      "collection": "comrade",
-      "via": "unit"
+      "via": "unit",
+      "collection": "comrade"
     },
     "description": {
       "type": "string"

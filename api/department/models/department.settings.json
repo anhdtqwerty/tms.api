@@ -18,8 +18,8 @@
       "type": "string"
     },
     "comrades": {
-      "collection": "comrade",
-      "via": "department"
+      "via": "department",
+      "collection": "comrade"
     },
     "metadata": {
       "type": "json"
