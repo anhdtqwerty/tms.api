@@ -68,6 +68,11 @@
     },
     "group": {
       "model": "position"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "comrade"
     }
   }
 }
