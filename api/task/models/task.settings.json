@@ -41,11 +41,11 @@
     "data": {
       "type": "json"
     },
-    "executeUnit": {
+    "executedUnit": {
       "model": "unit"
     },
-    "suportUnit": {
-      "model": "unit"
+    "supportedUnits": {
+      "collection": "unit"
     },
     "supervisorUnit": {
       "model": "unit"
@@ -53,11 +53,28 @@
     "executeDepartment": {
       "model": "department"
     },
-    "suportDepartment": {
+    "supportedDepartment": {
       "model": "department"
     },
     "supervisorDepartment": {
       "model": "department"
+    },
+    "subtasks": {
+      "collection": "task",
+      "via": "parent"
+    },
+    "parent": {
+      "model": "task",
+      "via": "subtasks"
+    },
+    "supervisors": {
+      "collection": "comrade"
+    },
+    "expiredDate": {
+      "type": "date"
+    },
+    "executedComrade": {
+      "model": "comrade"
     }
   }
 }
