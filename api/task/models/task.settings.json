@@ -75,6 +75,26 @@
     },
     "executedComrade": {
       "model": "comrade"
+    },
+    "supportedComrades": {
+      "collection": "comrade"
+    },
+    "publishedDate": {
+      "type": "date"
+    },
+    "files": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "requests": {
+      "collection": "request"
     }
   }
 }
