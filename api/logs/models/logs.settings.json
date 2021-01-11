@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "logs",
+  "info": {
+    "name": "logs",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "comrade": {
+      "model": "comrade"
+    },
+    "config": {
+      "type": "json"
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "data": {
+      "type": "json"
+    }
+  }
+}
