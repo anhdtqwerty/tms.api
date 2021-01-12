@@ -73,6 +73,17 @@
       "plugin": "users-permissions",
       "model": "user",
       "via": "comrade"
+    },
+    "avatar": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
     }
   }
 }
