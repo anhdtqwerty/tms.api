@@ -45,6 +45,10 @@
     },
     "approver": {
       "model": "comrade"
+    },
+    "task": {
+      "via": "requests",
+      "model": "task"
     }
   }
 }

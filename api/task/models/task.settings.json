@@ -94,10 +94,14 @@
       "required": false
     },
     "requests": {
-      "collection": "request"
+      "collection": "request",
+      "via": "task"
     },
     "createdBy": {
       "model": "comrade"
+    },
+    "keywords": {
+      "type": "string"
     }
   }
 }
