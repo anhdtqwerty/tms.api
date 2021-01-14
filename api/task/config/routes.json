@@ -18,6 +18,14 @@
     },
     {
       "method": "GET",
+      "path": "/tasks/statistic",
+      "handler": "task.statistic",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/tasks/:id",
       "handler": "task.findOne",
       "config": {
