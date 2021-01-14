@@ -47,8 +47,8 @@
       "model": "comrade"
     },
     "task": {
-      "model": "task",
-      "via": "requests"
+      "via": "requests",
+      "model": "task"
     }
   }
 }

@@ -8,15 +8,15 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
     "title": {
       "type": "string"
     },
     "comrades": {
-      "via": "unit",
-      "collection": "comrade"
+      "collection": "comrade",
+      "via": "unit"
     },
     "description": {
       "type": "string"
@@ -31,8 +31,8 @@
       "type": "json"
     },
     "departments": {
-      "via": "unit",
-      "collection": "department"
+      "collection": "department",
+      "via": "unit"
     },
     "type": {
       "type": "string"

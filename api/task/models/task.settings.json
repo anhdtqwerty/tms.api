@@ -8,7 +8,7 @@
   "options": {
     "increments": true,
     "timestamps": true,
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "attributes": {
     "title": {
@@ -94,14 +94,17 @@
       "required": false
     },
     "requests": {
-      "via": "task",
-      "collection": "request"
+      "collection": "request",
+      "via": "task"
     },
     "createdBy": {
       "model": "comrade"
     },
     "keywords": {
       "type": "string"
+    },
+    "doneDate": {
+      "type": "date"
     }
   }
 }
