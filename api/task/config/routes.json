@@ -26,6 +26,14 @@
     },
     {
       "method": "GET",
+      "path": "/tasks/comrade/statistic",
+      "handler": "task.statisticByComrade",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/tasks/department/statistic",
       "handler": "task.statisticByDepartment",
       "config": {
