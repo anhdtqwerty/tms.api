@@ -50,7 +50,7 @@
     "supervisorUnit": {
       "model": "unit"
     },
-    "executeDepartment": {
+    "executedDepartment": {
       "model": "department"
     },
     "supportedDepartment": {

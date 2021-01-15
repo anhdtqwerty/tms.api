@@ -18,8 +18,16 @@
     },
     {
       "method": "GET",
-      "path": "/tasks/statistic",
-      "handler": "task.statistic",
+      "path": "/tasks/unit/statistic",
+      "handler": "task.statisticByUnit",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tasks/department/statistic",
+      "handler": "task.statisticByDepartment",
       "config": {
         "policies": []
       }
