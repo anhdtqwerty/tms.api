@@ -94,8 +94,8 @@
       "required": false
     },
     "requests": {
-      "collection": "request",
-      "via": "task"
+      "via": "task",
+      "collection": "request"
     },
     "createdBy": {
       "model": "comrade"
@@ -105,6 +105,12 @@
     },
     "doneDate": {
       "type": "date"
+    },
+    "explainState": {
+      "type": "string"
+    },
+    "documentInfo": {
+      "type": "string"
     }
   }
 }

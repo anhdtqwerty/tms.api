@@ -47,8 +47,11 @@
       "model": "comrade"
     },
     "task": {
-      "via": "requests",
-      "model": "task"
+      "model": "task",
+      "via": "requests"
+    },
+    "executedDate": {
+      "type": "string"
     }
   }
 }
