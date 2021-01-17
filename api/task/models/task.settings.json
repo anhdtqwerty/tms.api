@@ -94,8 +94,8 @@
       "required": false
     },
     "requests": {
-      "via": "task",
-      "collection": "request"
+      "collection": "request",
+      "via": "task"
     },
     "createdBy": {
       "model": "comrade"
@@ -111,6 +111,12 @@
     },
     "documentInfo": {
       "type": "string"
+    },
+    "createdUnit": {
+      "model": "unit"
+    },
+    "createdDepartment": {
+      "model": "department"
     }
   }
 }
