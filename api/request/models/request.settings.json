@@ -50,8 +50,8 @@
       "model": "task",
       "via": "requests"
     },
-    "executedDate": {
-      "type": "string"
+    "startedDate": {
+      "type": "date"
     }
   }
 }
