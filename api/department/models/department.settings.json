@@ -12,7 +12,7 @@
   },
   "attributes": {
     "description": {
-      "type": "string"
+      "type": "text"
     },
     "code": {
       "type": "string"
@@ -39,6 +39,9 @@
     },
     "title": {
       "type": "string"
+    },
+    "data": {
+      "type": "json"
     }
   }
 }

@@ -15,7 +15,7 @@
       "type": "string"
     },
     "description": {
-      "type": "string"
+      "type": "text"
     },
     "code": {
       "type": "string"
@@ -107,7 +107,7 @@
       "type": "date"
     },
     "explainState": {
-      "type": "string"
+      "type": "text"
     },
     "documentInfo": {
       "type": "string"

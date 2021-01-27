@@ -19,7 +19,7 @@
       "via": "unit"
     },
     "description": {
-      "type": "string"
+      "type": "text"
     },
     "config": {
       "type": "json"
