@@ -10,12 +10,8 @@ module.exports = ({ env }) => ({
         database: "tms",
         username: "admin",
         password: "123123123",
-        
       },
-      options: {
-        enableArithAbort: false,
-        encrypt: true,
-      },
+      options: {},
     },
   },
 });
