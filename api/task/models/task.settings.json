@@ -12,7 +12,7 @@
   },
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "text"
     },
     "description": {
       "type": "text"
@@ -101,7 +101,7 @@
       "model": "comrade"
     },
     "keywords": {
-      "type": "string"
+      "type": "text"
     },
     "doneDate": {
       "type": "date"
@@ -110,7 +110,7 @@
       "type": "text"
     },
     "documentInfo": {
-      "type": "string"
+      "type": "text"
     },
     "createdUnit": {
       "model": "unit"
