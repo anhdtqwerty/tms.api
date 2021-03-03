@@ -5,13 +5,13 @@ module.exports = ({ env }) => ({
       host: "smtp.gmail.com",
       port: 465,
       auth: {
-        user: "anhdt.qwerty@gmail.com",
-        pass: "Yeuhuyen1!",
+        user: "service.skymore@gmail.com",
+        pass: "DefaultPassword@123",
       },
     },
     settings: {
-      defaultFrom: "anhdt.qwerty@gmail.com",
-      defaultReplyTo: "anhdt.qwerty@gmail.com",
+      defaultFrom: "service.skymore@gmail.com",
+      defaultReplyTo: "service.skymore@gmail.com",
     },
   },
 });
