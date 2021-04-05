@@ -36,7 +36,7 @@ module.exports = {
   FROM
       dbo.tasks t
       INNER JOIN dbo.units u
-      ON u.id = t.executedUnit
+      ON u.id = t.${ctx.query.joinBy || "executedUnit"} 
   ${query}
   GROUP BY
       u.id,
@@ -53,15 +53,9 @@ module.exports = {
       } else if (ctx.query.unit) {
         ` WHERE
          t.executedUnit = ${ctx.query.unit}`;
-      } else if (
-        ctx.query &&
-        ctx.query.from &&
-        ctx.query.to &&
-        ctx.query.department
-      ) {
+      } else if (ctx.query && ctx.query.from && ctx.query.to) {
         ` WHERE
-        t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'
-        AND t.executedDepartment = ${ctx.query.department}`;
+        t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'`;
       }
     }
     return await strapi.connections.default.raw(`
@@ -87,7 +81,7 @@ module.exports = {
     FROM
         dbo.tasks t
         INNER JOIN dbo.departments d
-        ON d.id = t.executedDepartment
+        ON d.id = t.${ctx.query.joinBy || "executedDepartment"}
     ${query}
     GROUP BY
         d.id,
@@ -96,13 +90,18 @@ module.exports = {
   async statisticByComrade(ctx) {
     let query = "";
     if (ctx.query) {
-      if (ctx.query && ctx.query.from && ctx.query.to && ctx.query.comrade) {
-        query = `WHERE 
-        t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'
-        AND t.executedComrade = ${ctx.query.comrade}`;
-      } else if (ctx.query.comrade) {
+      if (ctx.query.comrade) {
         ` WHERE
-         t.executedComrade = ${ctx.query.comrade}`;
+         t.${ctx.query.joinBy || "executedComrade"} = ${ctx.query.comrade}`;
+      } else if (ctx.query.department) {
+        ` WHERE
+         t.${ctx.query.joinDepartmentBy || "executedDepartment"} = ${
+          ctx.query.department
+        }`;
+      }
+
+      if (ctx.query && ctx.query.from && ctx.query.to) {
+        query += ` AND t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'`;
       }
     }
     return await strapi.connections.default.raw(`
@@ -128,7 +127,7 @@ module.exports = {
     FROM
         dbo.tasks t
         INNER JOIN dbo.comrades c
-        ON c.id = t.executedComrade
+        ON c.id = t.${ctx.query.joinBy || "executedComrade"}
     ${query}
     GROUP BY
         c.id,
