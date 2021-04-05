@@ -49,10 +49,10 @@ module.exports = {
       if (ctx.query && ctx.query.from && ctx.query.to && ctx.query.unit) {
         query = `WHERE 
         t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'
-        AND t.executedUnit = ${ctx.query.unit}`;
+        AND t.${ctx.query.joinUnitBy || "executedUnit"} = ${ctx.query.unit}`;
       } else if (ctx.query.unit) {
         ` WHERE
-         t.executedUnit = ${ctx.query.unit}`;
+         t.${ctx.query.joinUnitBy || "executedUnit"} = ${ctx.query.unit}`;
       } else if (ctx.query && ctx.query.from && ctx.query.to) {
         ` WHERE
         t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'`;
