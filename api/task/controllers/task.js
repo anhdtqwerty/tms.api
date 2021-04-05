@@ -53,6 +53,14 @@ module.exports = {
       } else if (ctx.query.unit) {
         ` WHERE
          t.executedUnit = ${ctx.query.unit}`;
+      } else if (
+        ctx.query &&
+        ctx.query.from &&
+        ctx.query.to &&
+        ctx.query.department
+      ) {
+        ` WHERE
+        t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'`;
       }
     }
     return await strapi.connections.default.raw(`
