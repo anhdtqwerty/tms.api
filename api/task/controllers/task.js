@@ -60,7 +60,8 @@ module.exports = {
         ctx.query.department
       ) {
         ` WHERE
-        t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'`;
+        t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'
+        AND t.executedDepartment = ${ctx.query.department}`;
       }
     }
     return await strapi.connections.default.raw(`
