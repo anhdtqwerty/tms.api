@@ -56,15 +56,18 @@ module.exports = {
     let query = "";
     if (ctx.query) {
       if (ctx.query && ctx.query.from && ctx.query.to && ctx.query.unit) {
-        query = `WHERE 
-        t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'
+        query = `WHERE  
+        t.createdDepartment IS NULL
+        AND t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'
         AND t.${ctx.query.joinUnitBy || "executedUnit"} = ${ctx.query.unit}`;
       } else if (ctx.query.unit) {
-        ` WHERE
-         t.${ctx.query.joinUnitBy || "executedUnit"} = ${ctx.query.unit}`;
+        query = ` WHERE
+        t.createdDepartment IS NULL
+         AND t.${ctx.query.joinUnitBy || "executedUnit"} = ${ctx.query.unit}`;
       } else if (ctx.query && ctx.query.from && ctx.query.to) {
-        ` WHERE
-        t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'`;
+        query = ` WHERE
+        t.createdDepartment IS NULL
+         AND t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'`;
       }
     }
     return await strapi.connections.default.raw(`
