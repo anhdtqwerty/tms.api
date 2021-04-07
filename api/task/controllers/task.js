@@ -8,7 +8,16 @@ module.exports = {
   async statisticByUnit(ctx) {
     let query = "";
     if (ctx.query) {
-      if (ctx.query && ctx.query.from && ctx.query.to) {
+      if (ctx.query && ctx.query.from && ctx.query.to && ctx.query.ministry) {
+        query = `WHERE
+        t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'
+        AND t.${ctx.query.joinUnitBy || "executedUnit"} = ${
+          ctx.query.ministry
+        }`;
+      } else if (ctx.query && ctx.query.ministry) {
+        query = `WHERE
+        t.${ctx.query.joinUnitBy || "executedUnit"} = ${ctx.query.ministry}`;
+      } else if (ctx.query && ctx.query.from && ctx.query.to) {
         query = `WHERE
         t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'`;
       }
