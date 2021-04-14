@@ -33,7 +33,7 @@ module.exports = {
       SUM(CASE WHEN (t.expiredDate > CONVERT(date, GETDATE()) AND t.state = 'recovered' ) then 1 else 0 end) recovered,
       SUM(CASE WHEN (t.expiredDate > CONVERT(date, GETDATE()) AND t.state = 'returned' ) then 1 else 0 end) returned,
       SUM(CASE WHEN (t.expiredDate > CONVERT(date, GETDATE()) AND t.state = 'done' AND t.status = 'approving' ) then 1 else 0 end) approving,
-      SUM(CASE WHEN (t.expiredDate > t.doneDate) AND t.state = 'done' AND t.status = 'approved' ) then 1 else 0 end) done,
+      SUM(CASE WHEN (t.expiredDate > t.doneDate AND t.state = 'done' AND t.status = 'approved' ) then 1 else 0 end) done,
   
       SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'waiting') then 1 else 0 end) waitingOutDate,
       SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'todo' ) then 1 else 0 end) todoOutDate,
