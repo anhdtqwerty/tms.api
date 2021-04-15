@@ -27,21 +27,21 @@ module.exports = {
       u.id,
       u.title,
       COUNT (t.id) total,
-      SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'waiting') then 1 else 0 end) waiting,
-      SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'todo' ) then 1 else 0 end) todo,
-      SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'doing' ) then 1 else 0 end) doing,
-      SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'recovered' ) then 1 else 0 end) recovered,
-      SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'returned' ) then 1 else 0 end) returned,
-      SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'done' AND t.status = 'approving' ) then 1 else 0 end) approving,
-      SUM(CASE WHEN ((t.expiredDate > t.doneDate OR t.type='noDeadline') AND t.state = 'done' AND t.status = 'approved' ) then 1 else 0 end) done,
+      SUM(CASE WHEN (t.state = 'waiting' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) waiting,
+      SUM(CASE WHEN (t.state = 'todo' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) todo,
+      SUM(CASE WHEN (t.state = 'doing' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) doing,
+      SUM(CASE WHEN (t.state = 'recovered' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) recovered,
+      SUM(CASE WHEN (t.state = 'returned' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) returned,
+      SUM(CASE WHEN (t.state = 'done' AND t.status = 'approving' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) approving,
+      SUM(CASE WHEN (t.state = 'done' AND t.status = 'approved' AND (t.type='noDeadline' OR t.expiredDate > t.doneDate)) then 1 else 0 end) done,
   
-      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'waiting' AND t.type = 'hasDeadline') then 1 else 0 end) waitingOutDate,
-      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'todo' AND t.type = 'hasDeadline') then 1 else 0 end) todoOutDate,
-      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'doing' AND t.type = 'hasDeadline') then 1 else 0 end) doingOutDate,
-      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'recovered' AND t.type = 'hasDeadline') then 1 else 0 end) recoveredOutDate,
-      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'returned' AND t.type = 'hasDeadline') then 1 else 0 end) returnedOutDate,
-      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'done' AND t.status = 'approving' AND t.type = 'hasDeadline') then 1 else 0 end) approvingOutDate,
-      SUM(CASE WHEN (t.expiredDate < t.doneDate AND t.state = 'done' AND t.status = 'approved' AND t.type = 'hasDeadline') then 1 else 0 end) doneOutDate
+      SUM(CASE WHEN (t.state = 'waiting' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) waitingOutDate,
+      SUM(CASE WHEN (t.state = 'todo' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) todoOutDate,
+      SUM(CASE WHEN (t.state = 'doing' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) doingOutDate,
+      SUM(CASE WHEN (t.state = 'recovered' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) recoveredOutDate,
+      SUM(CASE WHEN (t.state = 'returned' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) returnedOutDate,
+      SUM(CASE WHEN (t.state = 'done' AND t.status = 'approving' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) approvingOutDate,
+      SUM(CASE WHEN (t.state = 'done' AND t.status = 'approved' AND t.type = 'hasDeadline' AND t.expiredDate < t.doneDate) then 1 else 0 end) doneOutDate
   FROM
       dbo.tasks t
       INNER JOIN dbo.units u
@@ -75,21 +75,21 @@ module.exports = {
     d.id,
     d.title,
     COUNT (t.id) total,
-    SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'waiting') then 1 else 0 end) waiting,
-    SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'todo' ) then 1 else 0 end) todo,
-    SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'doing' ) then 1 else 0 end) doing,
-    SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'recovered' ) then 1 else 0 end) recovered,
-    SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'returned' ) then 1 else 0 end) returned,
-    SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'done' AND t.status = 'approving' ) then 1 else 0 end) approving,
-    SUM(CASE WHEN ((t.expiredDate > t.doneDate OR t.type='noDeadline') AND t.state = 'done' AND t.status = 'approved' ) then 1 else 0 end) done,
+    SUM(CASE WHEN (t.state = 'waiting' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) waiting,
+    SUM(CASE WHEN (t.state = 'todo' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) todo,
+    SUM(CASE WHEN (t.state = 'doing' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) doing,
+    SUM(CASE WHEN (t.state = 'recovered' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) recovered,
+    SUM(CASE WHEN (t.state = 'returned' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) returned,
+    SUM(CASE WHEN (t.state = 'done' AND t.status = 'approving' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) approving,
+    SUM(CASE WHEN (t.state = 'done' AND t.status = 'approved' AND (t.type='noDeadline' OR t.expiredDate > t.doneDate)) then 1 else 0 end) done,
 
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'waiting' AND t.type = 'hasDeadline') then 1 else 0 end) waitingOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'todo' AND t.type = 'hasDeadline') then 1 else 0 end) todoOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'doing' AND t.type = 'hasDeadline') then 1 else 0 end) doingOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'recovered' AND t.type = 'hasDeadline') then 1 else 0 end) recoveredOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'returned' AND t.type = 'hasDeadline') then 1 else 0 end) returnedOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'done' AND t.status = 'approving' AND t.type = 'hasDeadline') then 1 else 0 end) approvingOutDate,
-    SUM(CASE WHEN (t.expiredDate < t.doneDate AND t.state = 'done' AND t.status = 'approved' AND t.type = 'hasDeadline' ) then 1 else 0 end) doneOutDate
+    SUM(CASE WHEN (t.state = 'waiting' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) waitingOutDate,
+    SUM(CASE WHEN (t.state = 'todo' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) todoOutDate,
+    SUM(CASE WHEN (t.state = 'doing' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) doingOutDate,
+    SUM(CASE WHEN (t.state = 'recovered' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) recoveredOutDate,
+    SUM(CASE WHEN (t.state = 'returned' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) returnedOutDate,
+    SUM(CASE WHEN (t.state = 'done' AND t.status = 'approving' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) approvingOutDate,
+    SUM(CASE WHEN (t.state = 'done' AND t.status = 'approved' AND t.type = 'hasDeadline' AND t.expiredDate < t.doneDate) then 1 else 0 end) doneOutDate
     FROM
         dbo.tasks t
         INNER JOIN dbo.departments d
@@ -123,21 +123,21 @@ module.exports = {
     c.id,
     c.name,
     COUNT (t.id) total,
-    SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'waiting') then 1 else 0 end) waiting,
-    SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'todo' ) then 1 else 0 end) todo,
-    SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'doing' ) then 1 else 0 end) doing,
-    SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'recovered' ) then 1 else 0 end) recovered,
-    SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'returned' ) then 1 else 0 end) returned,
-    SUM(CASE WHEN ((t.expiredDate > CONVERT(date, GETDATE()) OR t.type='noDeadline') AND t.state = 'done' AND t.status = 'approving' ) then 1 else 0 end) approving,
-    SUM(CASE WHEN ((t.expiredDate > t.doneDate OR t.type='noDeadline') AND t.state = 'done' AND t.status = 'approved' ) then 1 else 0 end) done,
+    SUM(CASE WHEN (t.state = 'waiting' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) waiting,
+    SUM(CASE WHEN (t.state = 'todo' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) todo,
+    SUM(CASE WHEN (t.state = 'doing' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) doing,
+    SUM(CASE WHEN (t.state = 'recovered' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) recovered,
+    SUM(CASE WHEN (t.state = 'returned' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) returned,
+    SUM(CASE WHEN (t.state = 'done' AND t.status = 'approving' AND (t.type='noDeadline' OR t.expiredDate > CONVERT(date, GETDATE()))) then 1 else 0 end) approving,
+    SUM(CASE WHEN (t.state = 'done' AND t.status = 'approved' AND (t.type='noDeadline' OR t.expiredDate > t.doneDate)) then 1 else 0 end) done,
 
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'waiting' AND t.type = 'hasDeadline') then 1 else 0 end) waitingOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'todo' AND t.type = 'hasDeadline') then 1 else 0 end) todoOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'doing' AND t.type = 'hasDeadline') then 1 else 0 end) doingOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'recovered' AND t.type = 'hasDeadline') then 1 else 0 end) recoveredOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'returned' AND t.type = 'hasDeadline') then 1 else 0 end) returnedOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'done' AND t.status = 'approving' AND t.type = 'hasDeadline') then 1 else 0 end) approvingOutDate,
-    SUM(CASE WHEN (t.expiredDate < t.doneDate AND t.state = 'done' AND t.status = 'approved' AND t.type = 'hasDeadline') then 1 else 0 end) doneOutDate
+    SUM(CASE WHEN (t.state = 'waiting' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) waitingOutDate,
+    SUM(CASE WHEN (t.state = 'todo' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) todoOutDate,
+    SUM(CASE WHEN (t.state = 'doing' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) doingOutDate,
+    SUM(CASE WHEN (t.state = 'recovered' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) recoveredOutDate,
+    SUM(CASE WHEN (t.state = 'returned' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) returnedOutDate,
+    SUM(CASE WHEN (t.state = 'done' AND t.status = 'approving' AND t.type = 'hasDeadline' AND t.expiredDate < CONVERT(date, GETDATE())) then 1 else 0 end) approvingOutDate,
+    SUM(CASE WHEN (t.state = 'done' AND t.status = 'approved' AND t.type = 'hasDeadline' AND t.expiredDate < t.doneDate) then 1 else 0 end) doneOutDate
     FROM
         dbo.tasks t
         INNER JOIN dbo.comrades c
