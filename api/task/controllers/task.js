@@ -35,13 +35,13 @@ module.exports = {
       SUM(CASE WHEN (t.expiredDate > CONVERT(date, GETDATE()) AND t.state = 'done' AND t.status = 'approving' ) then 1 else 0 end) approving,
       SUM(CASE WHEN (t.expiredDate > t.doneDate AND t.state = 'done' AND t.status = 'approved' ) then 1 else 0 end) done,
   
-      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'waiting') then 1 else 0 end) waitingOutDate,
-      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'todo' ) then 1 else 0 end) todoOutDate,
-      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'doing' ) then 1 else 0 end) doingOutDate,
-      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'recovered' ) then 1 else 0 end) recoveredOutDate,
-      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'returned' ) then 1 else 0 end) returnedOutDate,
-      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'done' AND t.status = 'approving') then 1 else 0 end) approvingOutDate,
-      SUM(CASE WHEN (t.expiredDate < t.doneDate AND t.state = 'done' AND t.status = 'approved') then 1 else 0 end) doneOutDate
+      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'waiting' AND t.type = 'hasDeadline') then 1 else 0 end) waitingOutDate,
+      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'todo' AND t.type = 'hasDeadline') then 1 else 0 end) todoOutDate,
+      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'doing' AND t.type = 'hasDeadline') then 1 else 0 end) doingOutDate,
+      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'recovered' AND t.type = 'hasDeadline') then 1 else 0 end) recoveredOutDate,
+      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'returned' AND t.type = 'hasDeadline') then 1 else 0 end) returnedOutDate,
+      SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'done' AND t.status = 'approving' AND t.type = 'hasDeadline') then 1 else 0 end) approvingOutDate,
+      SUM(CASE WHEN (t.expiredDate < t.doneDate AND t.state = 'done' AND t.status = 'approved' AND t.type = 'hasDeadline') then 1 else 0 end) doneOutDate
   FROM
       dbo.tasks t
       INNER JOIN dbo.units u
@@ -83,13 +83,13 @@ module.exports = {
     SUM(CASE WHEN (t.expiredDate > CONVERT(date, GETDATE()) AND t.state = 'done' AND t.status = 'approving' ) then 1 else 0 end) approving,
     SUM(CASE WHEN (t.expiredDate > t.doneDate AND t.state = 'done' AND t.status = 'approved' ) then 1 else 0 end) done,
 
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'waiting') then 1 else 0 end) waitingOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'todo' ) then 1 else 0 end) todoOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'doing' ) then 1 else 0 end) doingOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'recovered' ) then 1 else 0 end) recoveredOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'returned' ) then 1 else 0 end) returnedOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'done' AND t.status = 'approving') then 1 else 0 end) approvingOutDate,
-    SUM(CASE WHEN (t.expiredDate < t.doneDate AND t.state = 'done' AND t.status = 'approved') then 1 else 0 end) doneOutDate
+    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'waiting' AND t.type = 'hasDeadline') then 1 else 0 end) waitingOutDate,
+    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'todo' AND t.type = 'hasDeadline') then 1 else 0 end) todoOutDate,
+    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'doing' AND t.type = 'hasDeadline') then 1 else 0 end) doingOutDate,
+    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'recovered' AND t.type = 'hasDeadline') then 1 else 0 end) recoveredOutDate,
+    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'returned' AND t.type = 'hasDeadline') then 1 else 0 end) returnedOutDate,
+    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'done' AND t.status = 'approving' AND t.type = 'hasDeadline') then 1 else 0 end) approvingOutDate,
+    SUM(CASE WHEN (t.expiredDate < t.doneDate AND t.state = 'done' AND t.status = 'approved' AND t.type = 'hasDeadline' ) then 1 else 0 end) doneOutDate
     FROM
         dbo.tasks t
         INNER JOIN dbo.departments d
@@ -131,13 +131,13 @@ module.exports = {
     SUM(CASE WHEN (t.expiredDate > CONVERT(date, GETDATE()) AND t.state = 'done' AND t.status = 'approving' ) then 1 else 0 end) approving,
     SUM(CASE WHEN (t.expiredDate > t.doneDate AND t.state = 'done' AND t.status = 'approved' ) then 1 else 0 end) done,
 
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'waiting') then 1 else 0 end) waitingOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'todo' ) then 1 else 0 end) todoOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'doing' ) then 1 else 0 end) doingOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'recovered' ) then 1 else 0 end) recoveredOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'returned' ) then 1 else 0 end) returnedOutDate,
-    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'done' AND t.status = 'approving') then 1 else 0 end) approvingOutDate,
-    SUM(CASE WHEN (t.expiredDate < t.doneDate AND t.state = 'done' AND t.status = 'approved') then 1 else 0 end) doneOutDate
+    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'waiting' AND t.type = 'hasDeadline') then 1 else 0 end) waitingOutDate,
+    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'todo' AND t.type = 'hasDeadline') then 1 else 0 end) todoOutDate,
+    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'doing' AND t.type = 'hasDeadline') then 1 else 0 end) doingOutDate,
+    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'recovered' AND t.type = 'hasDeadline') then 1 else 0 end) recoveredOutDate,
+    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'returned' AND t.type = 'hasDeadline') then 1 else 0 end) returnedOutDate,
+    SUM(CASE WHEN (t.expiredDate < CONVERT(date, GETDATE()) AND t.state = 'done' AND t.status = 'approving' AND t.type = 'hasDeadline') then 1 else 0 end) approvingOutDate,
+    SUM(CASE WHEN (t.expiredDate < t.doneDate AND t.state = 'done' AND t.status = 'approved' AND t.type = 'hasDeadline') then 1 else 0 end) doneOutDate
     FROM
         dbo.tasks t
         INNER JOIN dbo.comrades c
