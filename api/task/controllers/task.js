@@ -101,12 +101,13 @@ module.exports = {
   },
   async statisticByComrade(ctx) {
     let query = "";
+
     if (ctx.query) {
       if (ctx.query.comrade) {
-        ` WHERE
+        query = ` WHERE
          t.${ctx.query.joinBy || "executedComrade"} = ${ctx.query.comrade}`;
       } else if (ctx.query.department) {
-        ` WHERE
+        query = ` WHERE
          t.${ctx.query.joinDepartmentBy || "executedDepartment"} = ${
           ctx.query.department
         }`;
@@ -116,6 +117,7 @@ module.exports = {
         query += ` AND t.created_at BETWEEN '${ctx.query.from}' AND '${ctx.query.to}'`;
       }
     }
+
     return await strapi.connections.default.raw(`
     SELECT
     c.id,
