@@ -5,7 +5,7 @@ module.exports = ({ env }) => ({
       host: "smtp.gmail.com",
       port: 465,
       auth: {
-        user: "service.skymore@gmail.com",
+        user: "tms.skymore@gmail.com",
         pass: "Skymore@123",
       },
     },
