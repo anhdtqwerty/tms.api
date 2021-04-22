@@ -6,12 +6,12 @@ module.exports = ({ env }) => ({
       port: 465,
       auth: {
         user: "service.skymore@gmail.com",
-        pass: "DefaultPassword@123",
+        pass: "Skymore@123",
       },
     },
     settings: {
-      defaultFrom: "service.skymore@gmail.com",
-      defaultReplyTo: "service.skymore@gmail.com",
+      defaultFrom: "tms.skymore@gmail.com",
+      defaultReplyTo: "Skymore@123",
     },
   },
 });
