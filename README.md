@@ -20,6 +20,7 @@ npm install
 ### Step 2: Khởi chạy hệ thống
 
 ```bash
+npm run build
 npm run start
 ```
 
@@ -34,10 +35,12 @@ Tại link: https://myaccount.google.com/lesssecureapps
 
 ### Database:
 
-Cấu hình email server gửi email:
-
 Tại folder: config/database.js
 
 Cập nhật theo hostname.
+
+```bash
+    host: "YOUR-HOST-NAME-URL",
+```
 
 ## Contributing
