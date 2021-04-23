@@ -20,7 +20,7 @@ npm install
 ### Step 2: Khởi chạy hệ thống
 
 ```bash
-npm start
+npm run start
 ```
 
 ## Lưu ý cấu hình hệ thống:
@@ -31,5 +31,13 @@ Cấu hình email server gửi email:
 Tại folder: config/plugins.js
 Cấu hình email account và mật khẩu. Lưu ý phải enable lessecure email trong trường hợp sử dụng gmail
 Tại link: https://myaccount.google.com/lesssecureapps
+
+### Database:
+
+Cấu hình email server gửi email:
+
+Tại folder: config/database.js
+
+Cập nhật theo hostname.
 
 ## Contributing
