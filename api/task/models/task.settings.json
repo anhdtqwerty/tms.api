@@ -120,6 +120,12 @@
     },
     "supportedDepartments": {
       "collection": "department"
+    },
+    "document": {
+      "type": "string"
+    },
+    "createdMinistry": {
+      "type": "string"
     }
   }
 }
